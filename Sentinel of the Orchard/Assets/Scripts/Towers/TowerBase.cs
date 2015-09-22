@@ -104,17 +104,22 @@ public class TowerBase : MonoBehaviour
         
         if (trg.currentHP <= 0)
         {
-            for (int i = 0; i < 50; i++)
-            {
-                if (TowerList[i] != null && TowerList[i].CurrentTarget == trg)
-                {
-                    TowerList[i].CurrentTarget = null;
-                }
-            }
+            
             CurrentTarget = null;
             Destroy(creep);
         }
 
+    }
+
+    public void ClearTargets()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            if (TowerList[i] != null && TowerList[i].CurrentTarget == trg)
+            {
+                TowerList[i].CurrentTarget = null;
+            }
+        }
     }
     
         
