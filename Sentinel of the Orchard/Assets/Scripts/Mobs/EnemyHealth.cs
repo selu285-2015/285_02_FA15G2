@@ -15,9 +15,9 @@ public class EnemyHealth : MonoBehaviour {
 	CapsuleCollider collider;
 	bool isDead;
 	bool isSink;
-
-	// Use this for initialization
-	void Start () {
+    TowerBase towerRef = new TowerBase();
+    // Use this for initialization
+    void Start () {
 		collider = GetComponent<CapsuleCollider> ();
 
 		currentHP = startingHP;
@@ -37,7 +37,9 @@ public class EnemyHealth : MonoBehaviour {
 
 		//IF we get to making particels it will go here for the hit point of the model.
 
-		if (currentHP <= 0) {
+		if (currentHP <= 0)
+		{
+		    towerRef.ClearTargets(gameObject);
 			Death();
 		}
 	}
