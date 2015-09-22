@@ -15,7 +15,6 @@ public class EnemyHealth : MonoBehaviour {
 	CapsuleCollider collider;
 	bool isDead;
 	bool isSink;
-    TowerBase towerRef = new TowerBase();
     // Use this for initialization
     void Start () {
 		collider = GetComponent<CapsuleCollider> ();
@@ -28,7 +27,7 @@ public class EnemyHealth : MonoBehaviour {
 	
 	}
 
-	public void TakeDMG(int ammount, Vector3 hitPoint){
+	public void TakeDMG(int ammount, Vector3 hitPoint, TowerBase towerRef){
 		if (isDead) {
 			return;
 		}
