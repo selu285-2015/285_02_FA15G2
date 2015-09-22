@@ -111,7 +111,7 @@ public class TowerBase : MonoBehaviour
 
     }
 
-    public void ClearTargets()
+    public void ClearTargets(GameObject trg)
     {
         for (int i = 0; i < 50; i++)
         {
