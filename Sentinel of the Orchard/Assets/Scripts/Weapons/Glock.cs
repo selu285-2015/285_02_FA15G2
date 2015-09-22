@@ -14,11 +14,14 @@ public class Glock : MonoBehaviour{
 	int shootableMask;
 	RaycastHit shot;
 	Light gunLight;
+	public Transform prefab;
 	//AudioSource gunShot;
+
 
 	void Start () {
 		shootableMask = LayerMask.GetMask ("Shootable");
 		gunLight = GetComponent <Light> ();
+
 	}
 	
 	// Update is called once per frame
@@ -31,8 +34,9 @@ public class Glock : MonoBehaviour{
 		if((Input.GetMouseButtonDown(0)) && (timer <= attackSpeed)) {// If someone has any idea of why this works backwards please let me know.
 			Shoot ();
 			print("hai");
-
-	
+		}
+		if(Input.GetMouseButtonDown(1)){
+			Object.Instantiate(prefab);
 		}
 	
 	}
