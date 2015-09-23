@@ -4,13 +4,13 @@ using System.Collections;
 public class Navigation : MonoBehaviour {
 
 		
-	public bool isRIP = true;
+	public bool isRIP = false;
 
 		Transform nexus;               
 		NavMeshAgent nav;               
 		
 		
-		void Awake ()
+	void Awake ()
 		{
 	
 			nexus = GameObject.FindGameObjectWithTag ("nexus").transform;
@@ -28,11 +28,12 @@ public class Navigation : MonoBehaviour {
 		}
 	}
 		
-		void Update (){
+	void Update (){
 
-			if(isRIP = true){
+		if(isRIP == false)
+        {
 			print ("alive");
-				nav.SetDestination (nexus.position);
+			nav.SetDestination (nexus.position);
 		}
 
 	}
