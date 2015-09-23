@@ -54,7 +54,18 @@ public class TowerBase : MonoBehaviour
 		timer += Time.deltaTime;
 		
 		if(timer>=0.1) gunLine.enabled = false;
-		
+	    EnemyHealth targ = CurrentTarget.GetComponent<EnemyHealth>();
+
+	    if (targ.currentHP <= 0)
+            for (int i = 0; i < 50; i++)
+            {
+                if (TowerList[i] != null && TowerList[i].CurrentTarget == targ)
+                {
+                    TowerList[i].CurrentTarget = null;
+                }
+            }
+        CurrentTarget = null;
+
 		if (CurrentTarget == null && targetStack[newestTarget] != null)
 		{
 			CurrentTarget = StackPop();
@@ -102,18 +113,6 @@ public class TowerBase : MonoBehaviour
 		shootRay.direction = transform.position - creep.transform.position;
 		gunLine.SetPosition(1, shootRay.origin - shootRay.direction * Vector3.Distance(CurrentTarget.transform.position, self.gameObject.transform.position) * 1f);
 		
-		if (trg.currentHP <= 0)
-		{
-			for (int i = 0; i < 50; i++)
-			{
-				if (TowerList[i] != null && TowerList[i].CurrentTarget == trg)
-				{
-					TowerList[i].CurrentTarget = null;
-				}
-			}
-			CurrentTarget = null;
-			Destroy(creep);
-		}
 		
 	}
 	
