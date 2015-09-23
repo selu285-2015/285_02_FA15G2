@@ -38,7 +38,7 @@ public class EnemyHealth : MonoBehaviour {
 
 		if (currentHP <= 0)
 		{
-		    towerRef.ClearTargets(gameObject);
+		    //towerRef.ClearTargets(gameObject);
 			Death();
 		}
 	}
