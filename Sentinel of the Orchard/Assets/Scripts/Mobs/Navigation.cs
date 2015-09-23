@@ -32,7 +32,7 @@ public class Navigation : MonoBehaviour {
 
 		if(isRIP == false)
         {
-			print ("alive");
+			print ("donkeyballs");
 			nav.SetDestination (nexus.position);
 		}
 
