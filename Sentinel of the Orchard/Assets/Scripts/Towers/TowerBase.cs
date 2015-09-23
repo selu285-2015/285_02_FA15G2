@@ -142,7 +142,7 @@ public class TowerBase : MonoBehaviour
     void Fire(GameObject creep, int damage)
     {
         EnemyHealth trg = creep.GetComponent<EnemyHealth>();
-        trg.TakeDMG(damage, Vector3.back);
+        trg.TakeDMG(damage, Vector3.back, self);
 
         gunLine.enabled = true;
         gunLine.SetPosition(0, transform.position);
