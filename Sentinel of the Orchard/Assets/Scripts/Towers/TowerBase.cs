@@ -29,7 +29,6 @@ public class TowerBase : MonoBehaviour
 		TowerList[towerCount] = self;
 		towerCount++;
 	}
-<<<<<<< HEAD
 	
 	private void StackPush(GameObject mob)
 	{
@@ -95,7 +94,7 @@ public class TowerBase : MonoBehaviour
 	void Fire(GameObject creep, int damage)
 	{
 		EnemyHealth trg = creep.GetComponent<EnemyHealth>();
-		trg.TakeDMG(damage, Vector3.back);
+		trg.TakeDMG(damage, Vector3.back, null);
 		
 		gunLine.enabled = true;
 		gunLine.SetPosition(0, transform.position);
@@ -120,56 +119,3 @@ public class TowerBase : MonoBehaviour
 	
 	
 }
-=======
-
-    void OnTriggerEnter(Collider mob)
-    {
-        if (mob.gameObject.CompareTag("Creep"))
-        {
-            StackPush(mob.gameObject);
-        }
-    }
-
-    void OnTriggerExit(Collider mob)
-    {
-        if (mob.gameObject.CompareTag("Creep") && CurrentTarget == mob.gameObject)
-        {
-            CurrentTarget = null;
-        }
-    }
-
-
-    void Fire(GameObject creep, int damage)
-    {
-        EnemyHealth trg = creep.GetComponent<EnemyHealth>();
-        trg.TakeDMG(damage, Vector3.back, self);
-
-        gunLine.enabled = true;
-        gunLine.SetPosition(0, transform.position);
-        shootRay.origin = transform.position;
-        shootRay.direction = transform.position - creep.transform.position;
-        gunLine.SetPosition(1, shootRay.origin - shootRay.direction * Vector3.Distance(CurrentTarget.transform.position, self.gameObject.transform.position) * 1f);
-        
-        if (trg.currentHP <= 0)
-        {
-            
-            CurrentTarget = null;
-            Destroy(creep);
-        }
-
-    }
-
-    public void ClearTargets(GameObject trg)
-    {
-        for (int i = 0; i < 50; i++)
-        {
-            if (TowerList[i] != null && TowerList[i].CurrentTarget == trg)
-            {
-                TowerList[i].CurrentTarget = null;
-            }
-        }
-    }
-    
-        
-}
->>>>>>> origin/master
