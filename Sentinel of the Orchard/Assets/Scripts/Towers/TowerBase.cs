@@ -54,7 +54,9 @@ public class TowerBase : MonoBehaviour
 		timer += Time.deltaTime;
 		
 		if(timer>=0.1) gunLine.enabled = false;
-		
+	    EnemyHealth targ = CurrentTarget.GetComponent<EnemyHealth>();
+	    if (targ.currentHP <= 0) CurrentTarget = null;
+
 		if (CurrentTarget == null && targetStack[newestTarget] != null)
 		{
 			CurrentTarget = StackPop();
