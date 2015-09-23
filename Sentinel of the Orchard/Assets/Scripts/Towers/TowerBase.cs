@@ -20,6 +20,7 @@ public class TowerBase : MonoBehaviour
 	
 	private static TowerBase[] TowerList = new TowerBase[50];
 	private static int towerCount = 0;
+	EnemyHealth targ;
 	
 	void Awake()
 	{
@@ -52,20 +53,21 @@ public class TowerBase : MonoBehaviour
 	void Update () {
 		
 		timer += Time.deltaTime;
-		
+	
+
 		if(timer>=0.1) gunLine.enabled = false;
-	    EnemyHealth targ = CurrentTarget.GetComponent<EnemyHealth>();
 
-	    if (targ.currentHP <= 0)
-            for (int i = 0; i < 50; i++)
-            {
-                if (TowerList[i] != null && TowerList[i].CurrentTarget == targ)
-                {
-                    TowerList[i].CurrentTarget = null;
-                }
-            }
-        CurrentTarget = null;
-
+	    if (CurrentTarget != null) {
+			targ = CurrentTarget.GetComponent<EnemyHealth> ();
+		}
+	    if (targ != null && targ.currentHP <= 0) {
+			for (int i = 0; i < 50; i++) {
+				if (TowerList [i] != null && TowerList [i].CurrentTarget == targ) {
+					TowerList [i].CurrentTarget = null;
+				}
+			}
+			CurrentTarget = null;
+		}
 		if (CurrentTarget == null && targetStack[newestTarget] != null)
 		{
 			CurrentTarget = StackPop();
