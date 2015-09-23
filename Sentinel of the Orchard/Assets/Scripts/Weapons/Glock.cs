@@ -53,7 +53,7 @@ public class Glock : MonoBehaviour{
 			EnemyHealth enemyHealth = shot.collider.GetComponent<EnemyHealth> ();
 			if(enemyHealth != null){
 				print("bang!");
-				enemyHealth.TakeDMG(dmg, shot.point, null);
+				enemyHealth.TakeDMG(dmg, shot.point, new TowerBase());
 			}
 		}
 
