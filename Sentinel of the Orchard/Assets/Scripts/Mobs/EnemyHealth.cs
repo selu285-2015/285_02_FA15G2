@@ -27,7 +27,7 @@ public class EnemyHealth : MonoBehaviour {
 	
 	}
 
-	public void TakeDMG(int ammount, Vector3 hitPoint, TowerBase towerRef){
+	public void TakeDMG(int ammount, Vector3 hitPoint){
 		if (isDead) {
 			return;
 		}
