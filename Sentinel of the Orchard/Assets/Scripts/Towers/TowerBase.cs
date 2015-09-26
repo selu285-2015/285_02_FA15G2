@@ -76,32 +76,15 @@ public class TowerBase : MonoBehaviour
 	void Update () {
 		
 		timer += Time.deltaTime;
-<<<<<<< HEAD
 		
 		if(timer>=0.1) gunLine.enabled = false;
 
-	    if (CurrentTarget != null && CurrentTarget.GetComponent<EnemyHealth>().currentHP <= 0) CurrentTarget = null;
+	    if (CurrentTarget != null && CurrentTarget.GetComponent<EnemyHealth>().currentHP <= 0)
+        {
+            CurrentTarget = null; // If target enemy is dead, untarget it
+        }
             
-
 		if (CurrentTarget == null)
-=======
-	
-
-		if(timer>=0.1) gunLine.enabled = false;
-
-	    if (CurrentTarget != null) {
-			targ = CurrentTarget.GetComponent<EnemyHealth> ();
-		}
-	    if (targ != null && targ.currentHP <= 0) {
-			for (int i = 0; i < 50; i++) {
-				if (TowerList [i] != null && TowerList [i].CurrentTarget == targ) {
-					TowerList [i].CurrentTarget = null;
-				}
-			}
-			CurrentTarget = null;
-		}
-		if (CurrentTarget == null && targetStack[newestTarget] != null)
->>>>>>> master
 		{
 			CurrentTarget = StackPop();
 		}
