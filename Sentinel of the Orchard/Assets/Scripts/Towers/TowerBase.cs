@@ -5,7 +5,7 @@ using System.Collections;
 public class TowerBase : MonoBehaviour
 {
 	
-	public int Range;
+	public float Range;
 	public int Damage;
 	public float FireRate;
 	
@@ -34,7 +34,7 @@ public class TowerBase : MonoBehaviour
 	{
 		for (int i = 0; i < 100; i++)
 		{
-			if (targetStack[i] != null && targetStack[i].GetInstanceID() == mob.GetInstanceID()) return;
+			if (targetStack[i] != null && targetStack[i].GetInstanceID() == mob.GetInstanceID()) return; // Checks if the target being added is already in the list
 		}
 		targetStack[stackCount] = mob;
 		stackCount++;
@@ -43,10 +43,33 @@ public class TowerBase : MonoBehaviour
 	
 	private GameObject StackPop()
 	{
-		GameObject mob = targetStack[newestTarget];
-		targetStack[newestTarget] = null;
-		newestTarget++;
-		return mob;
+	    if (targetStack[newestTarget] != null)  // If the next slot contains an enemy, make it the current target and remove it from the list.
+	    {
+	        GameObject mob = targetStack[newestTarget];
+	        if (mob == null) // This looks redundant, but it isn't. == is overloaded in unity to check if a mob has been destroyed when checked against null.
+	        {
+	            mob = null;
+	        }
+	        targetStack[newestTarget] = null;
+	        newestTarget++;
+	        if (newestTarget == 100) newestTarget = 0;
+	        return mob;
+	    }
+	    else                                    // If the next slot is empty, run through the list to check for an enemy
+	    {
+	        int counter = newestTarget;
+	        for (int i = 0; i < 100; i++)
+	        {
+	            if (targetStack[counter] != null)
+	            {
+	                newestTarget = counter;
+	                break;
+	            }
+	            counter++;
+	            if (counter == 100) counter = 0;
+	        }
+	        return null;
+	    }
 	}
 	
 	void Update () {
@@ -54,19 +77,11 @@ public class TowerBase : MonoBehaviour
 		timer += Time.deltaTime;
 		
 		if(timer>=0.1) gunLine.enabled = false;
-	    EnemyHealth targ = CurrentTarget.GetComponent<EnemyHealth>();
 
-	    if (targ.currentHP <= 0)
-            for (int i = 0; i < 50; i++)
-            {
-                if (TowerList[i] != null && TowerList[i].CurrentTarget == targ)
-                {
-                    TowerList[i].CurrentTarget = null;
-                }
-            }
-        CurrentTarget = null;
+	    if (CurrentTarget != null && CurrentTarget.GetComponent<EnemyHealth>().currentHP <= 0) CurrentTarget = null;
+            
 
-		if (CurrentTarget == null && targetStack[newestTarget] != null)
+		if (CurrentTarget == null)
 		{
 			CurrentTarget = StackPop();
 		}
@@ -77,7 +92,7 @@ public class TowerBase : MonoBehaviour
 			timer = 0f;
 		}
 		
-		if (CurrentTarget != null && Vector3.Distance(CurrentTarget.transform.position, self.gameObject.transform.position) > Range*3+1)
+		if (CurrentTarget != null && Vector3.Distance(CurrentTarget.transform.position, self.gameObject.transform.position) > Range*3f+1f) // If target is out of range, untarget it
 		{
 			CurrentTarget = null;
 		}
@@ -105,16 +120,26 @@ public class TowerBase : MonoBehaviour
 	void Fire(GameObject creep, int damage)
 	{
 		EnemyHealth trg = creep.GetComponent<EnemyHealth>();
-		trg.TakeDMG(damage, Vector3.back, null);
+		trg.TakeDMG(damage, Vector3.back);
 		
 		gunLine.enabled = true;
 		gunLine.SetPosition(0, transform.position);
 		shootRay.origin = transform.position;
 		shootRay.direction = transform.position - creep.transform.position;
 		gunLine.SetPosition(1, shootRay.origin - shootRay.direction * Vector3.Distance(CurrentTarget.transform.position, self.gameObject.transform.position) * 1f);
-		
-		
 	}
+
+    public void ClearTarget(EnemyHealth target) // Removes a defeated enemy from all towers target lists.
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            if (TowerList[i] != null && TowerList[i].CurrentTarget == target.gameObject)
+            {
+                TowerList[i].CurrentTarget = null;
+            }
+        }
+        CurrentTarget = null;
+    }
 	
 	
 }
