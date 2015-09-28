@@ -21,6 +21,7 @@ public class MouseLock : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.P) && paused) {
 			Application.Quit();
 		}
+
 	}
 
 	void GamePause(){
@@ -36,5 +37,23 @@ public class MouseLock : MonoBehaviour {
 		Cursor.visible = false;
 		paused = false;
 		Time.timeScale = 1;//unpause;
+	}
+
+	void OnGUI(){
+		var w = 895;
+		var h = 423;
+		var GUIMenu = new Rect ((Screen.width - w) / 2, (Screen.height - h) / 2, Screen.width / 2, Screen.height / 2);
+		GameObject btnExitGame;
+
+
+		if (paused) {
+			GUI.Box(new Rect(GUIMenu), "Menu");
+			//GUI.Button(new Rect ((Screen.width - w)/ 2, (Screen.height - h) / 2, Screen.width / 10, Screen.height / 5), "Exit Game");
+			if(GUI.Button(new Rect ((Screen.width - w)/ 2, (Screen.height - h) / 2, Screen.width / 10, Screen.height / 5), "Exit Game"))
+			{
+				Application.Quit();
+			}
+
+		}
 	}
 }
