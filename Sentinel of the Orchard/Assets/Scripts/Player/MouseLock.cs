@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MouseLock : MonoBehaviour {
@@ -14,11 +14,12 @@ public class MouseLock : MonoBehaviour {
 	void Update ()
 	{
 		if (Input.GetKeyDown (KeyCode.Escape) && paused) {
-			UnPause();
-		}
-		else if(Input.GetKeyDown(KeyCode.Escape) && !paused){
+			UnPause ();
+		} else if (Input.GetKeyDown (KeyCode.Escape) && !paused) {
 
-			GamePause();
+			GamePause ();
+		} else if (Input.GetKeyDown (KeyCode.P) && paused) {
+			Application.Quit();
 		}
 	}
 
