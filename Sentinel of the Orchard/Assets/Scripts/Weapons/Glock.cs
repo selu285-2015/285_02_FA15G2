@@ -42,6 +42,8 @@ public class Glock : MonoBehaviour{
 		}
 		if(Input.GetMouseButtonDown(1)){
 			Object.Instantiate(prefab);
+
+		
 		}
 	
 	}
