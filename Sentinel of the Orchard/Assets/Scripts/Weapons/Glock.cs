@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class Glock : MonoBehaviour{
-	
+
+	public Animator anim;
+
 	public int dmg;
 	public float  attackSpeed = .5f;
 	public float range = 100f;
@@ -27,6 +29,7 @@ public class Glock : MonoBehaviour{
 		shootableMask = LayerMask.GetMask ("Shootable");
 		gunLight = GetComponent <Light> ();
 
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -39,7 +42,14 @@ public class Glock : MonoBehaviour{
 		if((Input.GetMouseButtonDown(0)) && (timer >= attackSpeed)) {// If someone has any idea of why this works backwards please let me know.
 			Shoot ();
 			print("hai");
+
+			anim.SetBool("Shooting", true);
+
 		}
+		if (timer >= attackSpeed) {
+			anim.SetBool ("Shooting", false);
+		}
+
 		if(Input.GetMouseButtonDown(1)){
 			Object.Instantiate(prefab);
 
