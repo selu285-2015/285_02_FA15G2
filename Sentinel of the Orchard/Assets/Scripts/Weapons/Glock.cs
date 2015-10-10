@@ -8,10 +8,10 @@ public class Glock : MonoBehaviour{
 	public int dmg;
 	public float  attackSpeed = .5f;
 	public float range = 100f;
+	float fTime = .1f;
 
 	public float recoilSpeed = 2f;
-	public float recoilRot = 20f;
-	public float recoilCD;
+
 
 
 	
@@ -22,6 +22,7 @@ public class Glock : MonoBehaviour{
 	Light gunLight;
 	Quaternion rot;
 	public Transform prefab;
+	public ParticleSystem pSystem;
 	//AudioSource gunShot;
 
 
@@ -42,18 +43,21 @@ public class Glock : MonoBehaviour{
 		if((Input.GetMouseButtonDown(0)) && (timer >= attackSpeed)) {// If someone has any idea of why this works backwards please let me know.
 			Shoot ();
 			print("hai");
-
+			anim.bodyRotation = transform.rotation;
 			anim.SetBool("Shooting", true);
+			pSystem.emissionRate = 11;
 
 		}
 		if (timer >= attackSpeed) {
 			anim.SetBool ("Shooting", false);
 		}
 
+		if (timer >= fTime) {
+			pSystem.emissionRate = 0;
+		}
+
 		if(Input.GetMouseButtonDown(1)){
 			Object.Instantiate(prefab);
-
-		
 		}
 	
 	}
