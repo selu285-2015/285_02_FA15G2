@@ -2,13 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 public class MouseLock : MonoBehaviour {
-	bool paused;
+	bool paused = false;
 	
 	void Start ()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = (false);
-		paused = (false);
+		Time.timeScale = 1;
 	}
 	
 	void Update ()
