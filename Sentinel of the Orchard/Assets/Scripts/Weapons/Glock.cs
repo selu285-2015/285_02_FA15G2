@@ -7,6 +7,10 @@ public class Glock : MonoBehaviour{
 	public float  attackSpeed = .5f;
 	public float range = 100f;
 
+	public float recoilSpeed = 2f;
+	public float recoilRot = 20f;
+	public float recoilCD;
+
 
 	
 	float timer= 0 ;
@@ -14,6 +18,7 @@ public class Glock : MonoBehaviour{
 	int shootableMask;
 	RaycastHit shot;
 	Light gunLight;
+	Quaternion rot;
 	public Transform prefab;
 	//AudioSource gunShot;
 
@@ -21,7 +26,7 @@ public class Glock : MonoBehaviour{
 	void Start () {
 		shootableMask = LayerMask.GetMask ("Shootable");
 		gunLight = GetComponent <Light> ();
-
+		rot = Quaternion.Euler(recoilRot, 0, 0);
 	}
 	
 	// Update is called once per frame
@@ -34,9 +39,14 @@ public class Glock : MonoBehaviour{
 		if((Input.GetMouseButtonDown(0)) && (timer >= attackSpeed)) {// If someone has any idea of why this works backwards please let me know.
 			Shoot ();
 			print("hai");
+			Quaternion temp = transform.rotation;
+			transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 100f);
+			transform.rotation= Quaternion.Lerp(transform.rotation, temp, 300f);
 		}
 		if(Input.GetMouseButtonDown(1)){
 			Object.Instantiate(prefab);
+
+		
 		}
 	
 	}

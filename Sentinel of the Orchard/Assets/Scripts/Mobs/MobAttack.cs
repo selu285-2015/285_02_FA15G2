@@ -32,12 +32,10 @@ public class MobAttack : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		timer += Time.deltaTime;
-
-		if (timer >= attackSpeed && canHit)
+		if (canHit)
 		{
 			Attack();
+			Destroy(gameObject);
 		}
 	}
 
