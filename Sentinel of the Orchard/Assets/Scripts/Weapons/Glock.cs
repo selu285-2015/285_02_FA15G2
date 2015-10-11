@@ -24,7 +24,7 @@ public class Glock : MonoBehaviour{
 	public Transform prefab;
 	public Transform prefab2;
 	public ParticleSystem pSystem;
-	private bool waveOne = false;
+	public bool waveOne = false;
 	//AudioSource gunShot;
 
 
@@ -82,8 +82,6 @@ public class Glock : MonoBehaviour{
 
 	void SpawnWave() {
 		Object.Instantiate(prefab);
-		Object.Instantiate(prefab);
-		Object.Instantiate(prefab);
-		Object.Instantiate(prefab2);
+
 	}
 }
