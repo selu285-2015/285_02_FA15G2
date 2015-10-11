@@ -2,14 +2,16 @@
 using System.Collections;
 
 public class Glock : MonoBehaviour{
-	
+
+	public Animator anim;
+
 	public int dmg;
 	public float  attackSpeed = .5f;
 	public float range = 100f;
+	float fTime = .1f;
 
 	public float recoilSpeed = 2f;
-	public float recoilRot = 20f;
-	public float recoilCD;
+
 
 
 	
@@ -20,13 +22,15 @@ public class Glock : MonoBehaviour{
 	Light gunLight;
 	Quaternion rot;
 	public Transform prefab;
+	public ParticleSystem pSystem;
 	//AudioSource gunShot;
 
 
 	void Start () {
 		shootableMask = LayerMask.GetMask ("Shootable");
 		gunLight = GetComponent <Light> ();
-		rot = Quaternion.Euler(recoilRot, 0, 0);
+
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -39,23 +43,27 @@ public class Glock : MonoBehaviour{
 		if((Input.GetMouseButtonDown(0)) && (timer >= attackSpeed)) {// If someone has any idea of why this works backwards please let me know.
 			Shoot ();
 			print("hai");
-			Quaternion temp = transform.rotation;
-			transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 100f);
-			transform.rotation= Quaternion.Lerp(transform.rotation, temp, 300f);
+			anim.bodyRotation = transform.rotation;
+			anim.SetBool("Shooting", true);
+			pSystem.emissionRate = 11;
+
 		}
+		if (timer >= attackSpeed) {
+			anim.SetBool ("Shooting", false);
+		}
+
+		if (timer >= fTime) {
+			pSystem.emissionRate = 0;
+		}
+
 		if(Input.GetMouseButtonDown(1)){
 			Object.Instantiate(prefab);
-
-		
 		}
 	
 	}
 
 	void Shoot(){
 		timer = 0f;
-
-
-		gunLight.enabled = true;
 		//gunLine.SetPosition (1, shot.point);
 		//
 
