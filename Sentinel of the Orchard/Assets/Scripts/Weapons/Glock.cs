@@ -24,7 +24,7 @@ public class Glock : MonoBehaviour{
 	public Transform prefab;
 	public Transform prefab2;
 	public ParticleSystem pSystem;
-	public bool waveOne = false;
+	private bool waveOne = false;
 	//AudioSource gunShot;
 
 
