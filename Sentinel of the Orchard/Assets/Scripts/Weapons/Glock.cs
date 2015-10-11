@@ -22,7 +22,9 @@ public class Glock : MonoBehaviour{
 	Light gunLight;
 	Quaternion rot;
 	public Transform prefab;
+	public Transform prefab2;
 	public ParticleSystem pSystem;
+	private bool waveOne = false;
 	//AudioSource gunShot;
 
 
@@ -56,8 +58,9 @@ public class Glock : MonoBehaviour{
 			pSystem.emissionRate = 0;
 		}
 
-		if(Input.GetMouseButtonDown(1)){
-			Object.Instantiate(prefab);
+		if((Input.GetKey(KeyCode.M)) && (waveOne == false)){
+			SpawnWave();
+			waveOne = true;
 		}
 	
 	}
@@ -74,6 +77,11 @@ public class Glock : MonoBehaviour{
 				enemyHealth.TakeDMG(dmg, shot.point);
 			}
 		}
+
+	}
+
+	void SpawnWave() {
+		Object.Instantiate(prefab);
 
 	}
 }
