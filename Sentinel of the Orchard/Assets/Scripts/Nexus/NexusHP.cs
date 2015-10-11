@@ -45,6 +45,9 @@ public class NexusHP : MonoBehaviour {
 	void Death()
 	{
 		isDead = true;
-		//code for game over screen 
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+		int level = 2; 
+		Application.LoadLevel (level);
 	}
 }
