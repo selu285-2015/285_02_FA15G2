@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Audio : MonoBehaviour {
 
-	public AudioClip waveSong;
+	private bool waveOne = false;
 	private AudioSource source;
 
 
@@ -17,8 +17,9 @@ public class Audio : MonoBehaviour {
 	void Update () {
 	
 
-		if (Input.GetKeyDown (KeyCode.M)) {
-			source.PlayOneShot(waveSong);
+		if ((Input.GetKeyDown (KeyCode.M)) && (waveOne == false)) {
+			source.Play();
+			waveOne = true;
 		}
 	}
 }
