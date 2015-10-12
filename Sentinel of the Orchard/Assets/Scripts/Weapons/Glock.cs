@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Glock : MonoBehaviour{
-
+	
+		
 	public Animator anim;
 
 	public int dmg;
@@ -15,7 +16,7 @@ public class Glock : MonoBehaviour{
 
 
 
-	float timer = 0 ;
+	 float timer = 0 ;
 	Ray shotCheck;
 	int shootableMask;
 	RaycastHit shot;
@@ -32,7 +33,10 @@ public class Glock : MonoBehaviour{
 		gunLight = GetComponent <Light> ();
 
 		anim = GetComponent<Animator>();
+
+
 	}
+
 	
 	// Update is called once per frame
 
@@ -47,6 +51,7 @@ public class Glock : MonoBehaviour{
 			anim.bodyRotation = transform.rotation;
 			anim.SetBool("Shooting", true);
 			pSystem.emissionRate = 11;
+
 
 		}
 		if (timer >= attackSpeed) {
