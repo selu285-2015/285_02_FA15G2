@@ -5,7 +5,7 @@ using System.Collections;
 
 public class SceneText : MonoBehaviour {
 
-	public Text waveStart;
+
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +15,11 @@ public class SceneText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKey (KeyCode.M)) {
+			Destroy(gameObject);
+		}
+
 	
 	}
 }

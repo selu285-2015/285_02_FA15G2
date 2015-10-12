@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Waves : MonoBehaviour {
 
+
 	int i = 0;
 	public Transform prefab;
 	public Transform prefab2;
@@ -24,6 +25,8 @@ public class Waves : MonoBehaviour {
 
 		if((Input.GetKey(KeyCode.M)) && (waveOne == false)){
 			waveOne = true;
+			
+
 		}
 		if ((i < 4) && (waveOne == true) && (timer >= waveDelay)) {
 			SpawnApple ();
