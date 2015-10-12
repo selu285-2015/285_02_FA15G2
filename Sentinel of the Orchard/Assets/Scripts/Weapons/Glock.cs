@@ -14,17 +14,16 @@ public class Glock : MonoBehaviour{
 
 
 
-	
-	float timer= 0 ;
+
+	float timer = 0 ;
 	Ray shotCheck;
 	int shootableMask;
 	RaycastHit shot;
 	Light gunLight;
 	Quaternion rot;
-	public Transform prefab;
-	public Transform prefab2;
+
 	public ParticleSystem pSystem;
-	private bool waveOne = false;
+
 	//AudioSource gunShot;
 
 
@@ -58,10 +57,7 @@ public class Glock : MonoBehaviour{
 			pSystem.emissionRate = 0;
 		}
 
-		if((Input.GetKey(KeyCode.M)) && (waveOne == false)){
-			SpawnWave();
-			waveOne = true;
-		}
+
 	
 	}
 
@@ -80,8 +76,5 @@ public class Glock : MonoBehaviour{
 
 	}
 
-	void SpawnWave() {
-		Object.Instantiate(prefab);
 
-	}
 }
