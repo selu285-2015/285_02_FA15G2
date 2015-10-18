@@ -8,6 +8,7 @@ public class Waves : MonoBehaviour {
 	public Transform prefab;
 	public Transform prefab2;
 	public Transform prefab3;
+    public PauseMenu pauseMenu;
 	float timer = 0f;
 	public float waveDelay = 0.5f;
 	bool waveOne = false;
@@ -20,10 +21,10 @@ public class Waves : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        bool canSpawn = !pauseMenu.pauseCheck();
 		timer += Time.deltaTime;
 
-		if((Input.GetKey(KeyCode.M)) && (waveOne == false)){
+		if((Input.GetKey(KeyCode.M)) && (waveOne == false) && (canSpawn)){
 			waveOne = true;
 			
 
