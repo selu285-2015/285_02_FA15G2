@@ -4,8 +4,9 @@ using System.Collections;
 public class ExitGame : MonoBehaviour {
 
 
-	public void Quit()
+    public void Quit ()
 	{
-		Application.Quit ();
+        Time.timeScale = 1;
+        Application.Quit ();
 	}
 }
