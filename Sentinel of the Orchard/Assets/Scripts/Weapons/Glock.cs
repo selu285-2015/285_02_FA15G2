@@ -10,6 +10,8 @@ public class Glock : MonoBehaviour{
 	public float  attackSpeed = .5f;
 	public float range = 100f;
 	float fTime = .1f;
+	public Collider shop;
+	public Canvas shopCanvas;
 
 	public float recoilSpeed = 2f;
 
