@@ -3,17 +3,23 @@ using System.Collections;
 
 public class Audio : MonoBehaviour {
 
-	// Use this for initialization
+	private bool waveOne = false;
+	private AudioSource source;
+
+
+
 	void Start () {
-	
+		source = GetComponent<AudioSource> ();
+
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
 	
 
-		if (Input.GetKeyDown (KeyCode.M)) {
-
+		if ((Input.GetKeyDown (KeyCode.M)) && (waveOne == false)) {
+			source.Play();
+			waveOne = true;
 		}
 	}
 }

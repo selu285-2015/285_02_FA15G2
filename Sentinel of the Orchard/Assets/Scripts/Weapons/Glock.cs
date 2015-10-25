@@ -2,27 +2,31 @@
 using System.Collections;
 
 public class Glock : MonoBehaviour{
-
+	
+		
 	public Animator anim;
 
 	public int dmg;
 	public float  attackSpeed = .5f;
 	public float range = 100f;
 	float fTime = .1f;
+	public Collider shop;
+	public Canvas shopCanvas;
 
 	public float recoilSpeed = 2f;
 
 
 
-	
-	float timer= 0 ;
+
+	 float timer = 0 ;
 	Ray shotCheck;
 	int shootableMask;
 	RaycastHit shot;
 	Light gunLight;
 	Quaternion rot;
-	public Transform prefab;
+
 	public ParticleSystem pSystem;
+
 	//AudioSource gunShot;
 
 
@@ -31,7 +35,10 @@ public class Glock : MonoBehaviour{
 		gunLight = GetComponent <Light> ();
 
 		anim = GetComponent<Animator>();
+
+
 	}
+
 	
 	// Update is called once per frame
 
@@ -47,6 +54,7 @@ public class Glock : MonoBehaviour{
 			anim.SetBool("Shooting", true);
 			pSystem.emissionRate = 11;
 
+
 		}
 		if (timer >= attackSpeed) {
 			anim.SetBool ("Shooting", false);
@@ -56,9 +64,7 @@ public class Glock : MonoBehaviour{
 			pSystem.emissionRate = 0;
 		}
 
-		if(Input.GetMouseButtonDown(1)){
-			Object.Instantiate(prefab);
-		}
+
 	
 	}
 
@@ -76,4 +82,6 @@ public class Glock : MonoBehaviour{
 		}
 
 	}
+
+
 }
