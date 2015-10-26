@@ -57,12 +57,14 @@ public class TowerPlacement : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+        if (other.isTrigger) return;
         if (other.CompareTag("Map") == false) placeable = false;
         else if(other.CompareTag("Map")) placeable = true;
     }
 
     void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger) return;
         if (other.CompareTag("Map") == true) placeable = false;
     }
     
