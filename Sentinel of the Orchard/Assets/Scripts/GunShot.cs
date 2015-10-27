@@ -16,7 +16,7 @@ public class GunShot : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 
-		if ((Input.GetMouseButtonDown (0)) && (timer >= attackSpeed)) {
+		if ((Input.GetMouseButtonDown (0)) && (timer >= attackSpeed) && Time.timeScale != 0) {
 			source.Play();
 			timer = 0f;
 		}
