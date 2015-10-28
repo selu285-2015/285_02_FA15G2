@@ -88,7 +88,7 @@ public class TikiTower : MonoBehaviour
         }
     }
 
-/*    void OnTriggerExit(Collider mob)
+    void OnTriggerExit(Collider mob)
     {
         if (mob.gameObject.CompareTag("Creep"))
         {
@@ -98,7 +98,6 @@ public class TikiTower : MonoBehaviour
             }
         }
     }
-*/
 
     void Fire(int damage)
     {
@@ -107,8 +106,8 @@ public class TikiTower : MonoBehaviour
         {
             if (targetStack[i] != null)
             {
-                int distance = (int) Mathf.Floor((int)Vector3.Distance(targetStack[i].gameObject.transform.position, self.gameObject.transform.position));
-                if (distance >= (Range+1))
+                int distance = (int) Mathf.Floor(Vector3.Distance(targetStack[i].gameObject.transform.position, self.gameObject.transform.position));
+                if (distance >= (Range+10))
                 {
                     targetStack[i] = null;
                     continue;
