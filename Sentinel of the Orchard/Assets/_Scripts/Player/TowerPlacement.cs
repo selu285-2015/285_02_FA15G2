@@ -11,8 +11,12 @@ public class TowerPlacement : MonoBehaviour
     public float displayheight;
     private Renderer selfRenderer;
     public string Key;
+	private GameObject player;
+	private PlayerInventory inven;
     void Start ()
     {
+		player = GameObject.FindGameObjectWithTag("Player");
+		inven = player.GetComponent<PlayerInventory> ();
         self = GetComponent<MeshRenderer>();
         selfRenderer = self;
         self.enabled = false;
@@ -42,7 +46,7 @@ public class TowerPlacement : MonoBehaviour
                 mat.color = new Color(1, 0, 0, .4f);
             }
         }
-	    if (Input.GetKeyDown(Key))
+	    if (Input.GetKeyDown(Key)&& inven.amountOfTesla > 0)
 	    {
 	        self.enabled = !self.enabled;
 	    }
@@ -51,6 +55,7 @@ public class TowerPlacement : MonoBehaviour
 	        GameObject newTower = Object.Instantiate(prefab);
 	        newTower.transform.position = self.gameObject.transform.position;
 	        self.enabled = false;
+			inven.amountOfTesla--;
 	    }
     }
 

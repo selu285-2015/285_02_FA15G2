@@ -15,8 +15,12 @@ public class EnemyHealth : MonoBehaviour {
 	CapsuleCollider collider;
 	bool isDead;
 	bool isSink;
+	private GameObject player;
+	private MoneySystem mSystem;
     // Use this for initialization
     void Start () {
+		player = GameObject.FindGameObjectWithTag ("Player");
+		mSystem = player.GetComponent<MoneySystem> ();
 		collider = GetComponent<CapsuleCollider> ();
 
 		currentHP = startingHP;
@@ -65,7 +69,7 @@ public class EnemyHealth : MonoBehaviour {
 		isSink = true;
 
         //increase player's money.
-        GetComponent <playerMoney> ().GainMoney(100);
+        mSystem.GainMoney(100);
 
 		Destroy (gameObject, 2f);
 	}
