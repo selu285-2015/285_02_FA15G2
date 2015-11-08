@@ -8,12 +8,14 @@ public class ShopScript : MonoBehaviour {
 	private GameObject shop;
 	[SerializeField]
 	private GameObject shopText;
-
+	private PlayerInventory inven;
 	bool isShopping = false;
+	private MoneySystem mSystem;
 
 	// Use this for initialization
 	void Start () {
-	
+		inven = player.GetComponent<PlayerInventory> ();
+		mSystem = player.GetComponent<MoneySystem> ();
 	}
 	
 	// Update is called once per frame
@@ -33,6 +35,25 @@ public class ShopScript : MonoBehaviour {
 			Cursor.visible = false;
 			shopText.SetActive(true);
 			isShopping = false;
+		}
+	}
+
+	public void buyTesla(){
+		if (inven.money >= 100) {
+			mSystem.LoseMoney(100);
+			inven.amountOfTesla++;
+			//play cha ching sound here
+		} else {
+			//play err err sound
+		}
+	}
+	public void buyTiki(){
+		if (inven.money >= 100) {
+			inven.money = inven.money - 100;
+			inven.amountOfTiki++;
+			//play young mulla baybe
+		} else {
+			//play err err sound
 		}
 	}
 }

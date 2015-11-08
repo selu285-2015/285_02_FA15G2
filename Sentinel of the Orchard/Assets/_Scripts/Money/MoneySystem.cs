@@ -4,17 +4,19 @@ using UnityEngine.UI;
 
 public class MoneySystem : MonoBehaviour
 {
-    public int CurrentMoney;
+	public GameObject player;
     public Text CurrentMoney_Text;
+	public PlayerInventory inven;
 
 
     // Use this for initialization
     void Start()
     {
+		inven =  player.GetComponent<PlayerInventory>();
         //player's total money
-        CurrentMoney = 0;
+       // CurrentMoney = startMoney;
         //presents money on the screen
-        CurrentMoney_Text.text = CurrentMoney.ToString();
+        CurrentMoney_Text.text = "Money: " + inven.money.ToString();
     }
 
     // Update is called once per frame
@@ -26,15 +28,13 @@ public class MoneySystem : MonoBehaviour
     public void GainMoney(int MoneyGained)
     {
         //adds money to player and presents it in money UI
-        CurrentMoney += MoneyGained;
-        CurrentMoney_Text.text = CurrentMoney.ToString();
-
+        inven.money += MoneyGained;
+        CurrentMoney_Text.text = "Money: " + inven.money.ToString();
     }
 
     public void LoseMoney(int MoneyLost)
     {
-
-        if (CurrentMoney - MoneyLost < 0)
+        if (inven.money - MoneyLost < 0)
         {
             //showed in console when player doesnt have enough money to lose.
             Debug.Log("You require additional money.");
@@ -42,8 +42,8 @@ public class MoneySystem : MonoBehaviour
         }else
         {
             //subtracts money from player and presents in to money UI
-            CurrentMoney -= MoneyLost;
-            CurrentMoney_Text.text = CurrentMoney.ToString();
+            inven.money -= MoneyLost;
+            CurrentMoney_Text.text = "Money: " + inven.money.ToString();
 
         }
     }
