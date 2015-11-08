@@ -23,12 +23,16 @@ public class ShopScript : MonoBehaviour {
 			Time.timeScale = 0;
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
+			shopText.SetActive(false);
+			isShopping = true;
 		}
 		else if(Input.GetKeyDown(KeyCode.E) && isShopping){
 			shop.SetActive(false);
 			Time.timeScale = 1;
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
+			shopText.SetActive(true);
+			isShopping = false;
 		}
 	}
 }
