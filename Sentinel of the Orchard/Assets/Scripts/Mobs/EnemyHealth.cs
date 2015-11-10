@@ -64,7 +64,8 @@ public class EnemyHealth : MonoBehaviour {
 
 		isSink = true;
 
-		//increase players money.
+        //increase player's money.
+        GetComponent <playerMoney> ().GainMoney(100);
 
 		Destroy (gameObject, 2f);
 	}
