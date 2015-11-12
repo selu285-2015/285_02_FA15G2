@@ -4,85 +4,63 @@ using System.Collections;
 public class Waves : MonoBehaviour {
 
 
-	int i = 0;
-	public Transform prefab;
-	public Transform prefab2;
-	public Transform prefab3;
-    public PauseMenu pauseMenu;
-	float timer = 0f;
-	public float waveDelay = 0.5f;
-	bool waveOne = false;
+	[SerializeField]private Transform prefab;
+	[SerializeField]private Transform prefab2;
+	[SerializeField]private Transform prefab3;
+	[SerializeField]private PauseMenu pauseMenu;
+	[SerializeField]private TextAsset strings;
+	private float timer = 0f;
+	public float waveDelay = 1f;
+	private bool spawning = false;
+	private string waves;
+	private char[] charArray;
+	private int index;
 
 
 	// Use this for initialization
 	void Start () {
-	
+		index = 0;
+
+		charArray = strings.ToString().ToCharArray();
 	}
 	
-	// Update is called once per frame
+	//might look bad, but kinda needed for spawning of enemies since This is technically a 2d Char array
 	void Update () {
-        bool canSpawn = !pauseMenu.pauseCheck();
-		timer += Time.deltaTime;
+		if (spawning == true && (index != charArray.Length-1)) {
+				timer += Time.deltaTime;
+				if (timer >= waveDelay) {
+					timer = 0f;
+					//Trying to make it more efficent boyz
+					switch (charArray[index]) {
+					case 'a':		SpawnApple ();
+						index++;
+						break;
+					case 'l':
+						SpawnLemon ();
+						index++;
+						break;
+					case 'b':
+						SpawnBoss ();
+						index++;
+						break;
+					default:
+						index++;
+						break;
 
-		if((Input.GetKey(KeyCode.M)) && (waveOne == false) && (canSpawn)){
-			waveOne = true;
+					}
+				}
 			
-
+		else if(charArray [index] == '\n'){
+			spawning = false;
 		}
-		if ((i < 4) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnApple ();
-			i++;
-			timer = 0;
-
+			}
+	else if(Input.GetKeyDown(KeyCode.M)){
+			spawning = true;
 		}
-		else if ((i < 6) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnLemon ();
-			i++;
-			timer = 0;
-			
-		}
-		else if ((i < 7) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnApple ();
-			i++;
-			timer = 0;
-			
-		}
-		else if ((i < 10) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnLemon ();
-			i++;
-			timer = 0;
-			
-		}
-		else if ((i < 13) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnApple ();
-			i++;
-			timer = 0;
-			
-		}
-		else if ((i < 16) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnLemon ();
-			i++;
-			timer = 0;
-			
-		}
-		else if ((i < 18) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnApple ();
-			i++;
-			timer = 0;
-			
-		}
-		else if ((i == 18) && (waveOne == true) && (timer >= waveDelay)) {
-			SpawnBoss ();
-			i++;
-			timer = 0;
-			
-		}
-
 	}
+	
 	void SpawnApple() {
-
 			Object.Instantiate (prefab);
-			
 		}
 
 	void SpawnLemon() {
@@ -92,6 +70,4 @@ public class Waves : MonoBehaviour {
 	void SpawnBoss() {
 		Object.Instantiate (prefab3);
 	}
-	
-
 }
