@@ -16,7 +16,7 @@ public class MoneySystem : MonoBehaviour
         //player's total money
        // CurrentMoney = startMoney;
         //presents money on the screen
-        CurrentMoney_Text.text = "Money: " + inven.money.ToString();
+        CurrentMoney_Text.text = "$ " + inven.money.ToString();
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class MoneySystem : MonoBehaviour
     {
         //adds money to player and presents it in money UI
         inven.money += MoneyGained;
-        CurrentMoney_Text.text = "Money: " + inven.money.ToString();
+        CurrentMoney_Text.text = "$ " + inven.money.ToString();
     }
 
     public void LoseMoney(int MoneyLost)
@@ -43,7 +43,7 @@ public class MoneySystem : MonoBehaviour
         {
             //subtracts money from player and presents in to money UI
             inven.money -= MoneyLost;
-            CurrentMoney_Text.text = "Money: " + inven.money.ToString();
+            CurrentMoney_Text.text = "$ " + inven.money.ToString();
 
         }
     }
