@@ -46,7 +46,7 @@ public class TowerPlacement : MonoBehaviour
                 mat.color = new Color(1, 0, 0, .4f);
             }
         }
-	    if (Input.GetKeyDown(Key)&& inven.amountOfTesla > 0)
+	    if (Input.GetKeyDown(Key) && inven.amountOfTesla > 0)
 	    {
 	        self.enabled = !self.enabled;
 	    }
