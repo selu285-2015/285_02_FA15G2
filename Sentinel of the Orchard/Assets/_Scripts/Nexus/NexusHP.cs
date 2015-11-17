@@ -47,7 +47,7 @@ public class NexusHP : MonoBehaviour {
 		isDead = true;
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
-		int level = 2; 
+		int level = 3; 
 		Application.LoadLevel (level);
 	}
 }

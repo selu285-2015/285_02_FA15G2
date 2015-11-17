@@ -11,11 +11,13 @@ public class ShopScript : MonoBehaviour {
 	private PlayerInventory inven;
 	bool isShopping = false;
 	private MoneySystem mSystem;
-
+	public GameObject hud;
+	private PauseMenu pM;
 	// Use this for initialization
 	void Start () {
 		inven = player.GetComponent<PlayerInventory> ();
 		mSystem = player.GetComponent<MoneySystem> ();
+		pM = hud.GetComponent<PauseMenu> ();
 	}
 	
 	// Update is called once per frame
@@ -27,6 +29,7 @@ public class ShopScript : MonoBehaviour {
 			Cursor.visible = true;
 			shopText.SetActive(false);
 			isShopping = true;
+			pM.enabled = false;
 		}
 		else if(Input.GetKeyDown(KeyCode.E) && isShopping){
 			shop.SetActive(false);
@@ -35,6 +38,7 @@ public class ShopScript : MonoBehaviour {
 			Cursor.visible = false;
 			shopText.SetActive(true);
 			isShopping = false;
+			pM.enabled = true;
 		}
 	}
 
