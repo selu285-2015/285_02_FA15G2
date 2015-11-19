@@ -47,10 +47,9 @@ public class Glock : MonoBehaviour{
 		shotCheck = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0));
 		//print (timer);
 
-		if((Input.GetMouseButtonDown(0)) && (timer >= attackSpeed)) {// If someone has any idea of why this works backwards please let me know.
+		if((Input.GetMouseButtonDown(0)) && (timer >= attackSpeed) && Time.timeScale != 0) {// If someone has any idea of why this works backwards please let me know.
 			Shoot ();
-			print("hai");
-			anim.bodyRotation = transform.rotation;
+			//anim.bodyRotation = transform.rotation;
 			anim.SetBool("Shooting", true);
 			pSystem.emissionRate = 11;
 
@@ -76,7 +75,6 @@ public class Glock : MonoBehaviour{
 		if(Physics.Raycast(shotCheck, out shot, range, shootableMask)){
 			EnemyHealth enemyHealth = shot.collider.GetComponent<EnemyHealth> ();
 			if(enemyHealth != null){
-				print("bang!");
 				enemyHealth.TakeDMG(dmg, shot.point);
 			}
 		}

@@ -76,8 +76,10 @@ public class TowerBase : MonoBehaviour
 	void Update () {
 		
 		timer += Time.deltaTime;
-		
-		if(timer>=0.1) gunLine.enabled = false;
+
+        self.gameObject.transform.position = new Vector3(self.gameObject.transform.position.x, 6.45f, self.gameObject.transform.position.z);
+
+        if (timer>=0.1) gunLine.enabled = false;
 
 	    if (CurrentTarget != null && CurrentTarget.GetComponent<EnemyHealth>().currentHP <= 0)
         {

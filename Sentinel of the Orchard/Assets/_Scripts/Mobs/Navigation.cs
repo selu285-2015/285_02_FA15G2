@@ -16,6 +16,8 @@ public class Navigation : MonoBehaviour {
 			nexus = GameObject.FindGameObjectWithTag ("nexus").transform;
 			isRIP = false;
 			nav = GetComponent <NavMeshAgent> ();
+			nav.SetDestination (nexus.position);
+			
 		}
 		
 	void OnTriggerEnter(Collider checker)
@@ -32,8 +34,8 @@ public class Navigation : MonoBehaviour {
 
 		if(isRIP == false)
         {
-			print ("donkeyballs");
-			nav.SetDestination (nexus.position);
+
+
 		}
 
 	}
