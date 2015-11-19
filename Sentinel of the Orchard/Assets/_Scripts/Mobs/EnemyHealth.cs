@@ -53,19 +53,20 @@ public class EnemyHealth : MonoBehaviour {
 		Sink ();
 		collider.isTrigger = true;
 
+        //increase player's money.
+        GetComponent<MoneySystem>().GainMoney(100);
 
 
-	}
 
-	public void Sink(){
+    }
+
+    public void Sink(){
 		GetComponent <NavMeshAgent> ().enabled = false;
 
 		GetComponent <Rigidbody> ().isKinematic = true;
 
 		isSink = true;
 
-        //increase player's money.
-        GetComponent <playerMoney> ().GainMoney(100);
 
 		Destroy (gameObject, 2f);
 	}

@@ -5,7 +5,8 @@ public class AddSubtractionFunction : MonoBehaviour
 {
 
     public GameObject player;
-    
+    public MoneySystem money;
+
 
     // Use this for initialization
     void Start()
@@ -27,6 +28,6 @@ public class AddSubtractionFunction : MonoBehaviour
         {
             player.GetComponent<MoneySystem>().LoseMoney(50);
         }
-
+        Debug.Log(money.CurrentMoney);
     }
 }
