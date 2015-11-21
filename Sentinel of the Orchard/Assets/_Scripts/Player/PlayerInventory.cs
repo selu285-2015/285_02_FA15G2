@@ -9,8 +9,6 @@ public class PlayerInventory : MonoBehaviour {
 	public int amountOf3rdTower = 0;
 	public GameObject shopCanvas;
 	public Collider shopCollider;
-    public GameObject upgradeCanvas;
-    public Collider upgradeCollider;
 
     // Use this for initialization
     void Start () {
@@ -27,19 +25,11 @@ public class PlayerInventory : MonoBehaviour {
 			shopCanvas.SetActive(true);
 			print ("fdsa");
 		}
-        if (check.gameObject.CompareTag("Tower"))
-        {
-            upgradeCanvas.SetActive(true);
-        }
     }
 
 	void OnTriggerExit(Collider check){
 		if (check == shopCollider) {
 			shopCanvas.SetActive(false);
 		}
-        if (check.gameObject.CompareTag("Tower"))
-        {
-            upgradeCanvas.SetActive(false);
-        }
     }
 }

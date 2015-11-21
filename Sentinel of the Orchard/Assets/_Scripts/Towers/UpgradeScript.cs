@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UpgradeScript : MonoBehaviour {
 
@@ -9,6 +10,15 @@ public class UpgradeScript : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     private GameObject upgradeText;
+
+    public Text damagePrice;
+    public Text damageDescription;
+    public Text ratePrice;
+    public Text rateDescription;
+    public Text rangePrice;
+    public Text rangeDescription;
+    public Text specialPrice;
+    public Text specialDescription;
     private PlayerInventory inven;
     bool isShopping = false;
     private MoneySystem mSystem;
@@ -22,8 +32,18 @@ public class UpgradeScript : MonoBehaviour {
     
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+	    if (target != null)
+        { 
+
+            damagePrice.text = "Price : " + 10 * Mathf.Pow(2, target.DamageLevel);
+            ratePrice.text = "Price : " + 10 * Mathf.Pow(2, target.FireRateLevel);
+            rangePrice.text = "Price : " + 10 * Mathf.Pow(2, target.RangeLevel);
+            specialPrice.text = "Price : " + 500;
+
+
+        }
 	}
 
     public void UpgradeDamage()
@@ -47,6 +67,7 @@ public class UpgradeScript : MonoBehaviour {
         if (inven.money >= 10 * Mathf.Pow(2, target.RangeLevel))
         {
             mSystem.LoseMoney(10 * (int)Mathf.Pow(2, target.RangeLevel));
+            target.RangeLevel++;
             target.GetComponent<SphereCollider>().radius += 1;
         }
     }
