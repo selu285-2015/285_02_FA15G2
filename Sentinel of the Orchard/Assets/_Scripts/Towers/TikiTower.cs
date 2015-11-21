@@ -1,13 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TikiTower : MonoBehaviour
+public class TikiTower : TowerBase
 {
 	
-	public float Range;
-    public int Damage;
-    public float FireRate;
-    
     private float timer = 5f;
     private GameObject[] targetStack = new GameObject[100];
     private int stackCount = 0;
