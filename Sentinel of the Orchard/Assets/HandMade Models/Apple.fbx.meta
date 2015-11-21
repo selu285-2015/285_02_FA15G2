@@ -1,26 +1,21 @@
 fileFormatVersion: 2
-guid: 8aa2e622cd037fb46aa4a21b8a954196
-timeCreated: 1444419692
+guid: 575cc07f84fb1474f884549719816972
+timeCreated: 1446793086
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube
-    100004: Cylinder
+    100002: Camera
+    100004: Cube
+    100006: Lamp
     400000: //RootNode
-    400002: Cube
-    400004: Cylinder
+    400002: Camera
+    400004: Cube
+    400006: Lamp
     2300000: Cube
-    2300002: Cylinder
-    2300004: //RootNode
     3300000: Cube
-    3300002: Cylinder
-    3300004: //RootNode
-    4300000: Cylinder
-    4300002: Cube
-    7400000: Default Take
-    9500000: //RootNode
+    4300000: Cube
   materials:
     importMaterials: 1
     materialName: 0
@@ -78,7 +73,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

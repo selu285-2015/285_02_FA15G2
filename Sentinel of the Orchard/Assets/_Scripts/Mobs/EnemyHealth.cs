@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	//Animator anim;
 	//AudioSource enemyAudio
-	CapsuleCollider collider;
+	Collider collider;
 	bool isDead;
 	bool isSink;
 	private GameObject player;
@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour {
     void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		mSystem = player.GetComponent<MoneySystem> ();
-		collider = GetComponent<CapsuleCollider> ();
+		collider = GetComponent<Collider> ();
 
 		currentHP = startingHP;
 	}
