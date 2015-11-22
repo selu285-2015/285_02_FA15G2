@@ -32,11 +32,24 @@ public class FullScreenCheck : MonoBehaviour {
         else if(Screen.fullScreen == false)
             isFS = false;
     }
+    public void setRes(Resolution res)
+    {
+        currentRes = res;
+    }
+    Resolution getRes()
+    {
+        return this.currentRes;
+    }
     public void changeState ()
     {
         checkFS();
         isFS = !isFS;
 
-        Screen.SetResolution(currentRes.width, currentRes.height, isFS);
+        if (isFS == false)
+        {
+            Screen.SetResolution(getRes().width, getRes().height, isFS);
+        }
+        else if (isFS == true)
+            Screen.fullScreen = true;
     }
 }
