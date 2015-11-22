@@ -10,8 +10,8 @@ public class PlayerInventory : MonoBehaviour {
 	public GameObject shopCanvas;
 	public Collider shopCollider;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -25,11 +25,11 @@ public class PlayerInventory : MonoBehaviour {
 			shopCanvas.SetActive(true);
 			print ("fdsa");
 		}
-	}
+    }
 
 	void OnTriggerExit(Collider check){
 		if (check == shopCollider) {
 			shopCanvas.SetActive(false);
 		}
-	}
+    }
 }
