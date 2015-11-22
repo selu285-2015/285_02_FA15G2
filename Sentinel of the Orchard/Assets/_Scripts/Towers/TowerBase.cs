@@ -8,8 +8,16 @@ public class TowerBase : MonoBehaviour
 	public float Range;
 	public int Damage;
 	public float FireRate;
-	
-	private GameObject CurrentTarget = null;
+
+    //Tracking upgrade levels. Increases cost geometrically, increases stats arithmetically.
+    public int FireRateLevel = 0;
+    public int DamageLevel = 0;
+    public int RangeLevel = 0;
+    public int Special = 0;
+    [SerializeField]
+    private GameObject upgrade;
+
+    private GameObject CurrentTarget = null;
 	private float timer = 5f;
 	private GameObject[] targetStack = new GameObject[100];
 	private int stackCount = 0;
@@ -91,9 +99,9 @@ public class TowerBase : MonoBehaviour
 			CurrentTarget = StackPop();
 		}
 		
-		if (CurrentTarget != null && timer > FireRate)
+		if (CurrentTarget != null && timer > FireRate - FireRateLevel*0.1)
 		{
-			Fire(CurrentTarget, Damage);
+			Fire(CurrentTarget, Damage + DamageLevel*10);
 			timer = 0f;
 		}
 		
@@ -111,7 +119,8 @@ public class TowerBase : MonoBehaviour
 		{
 			StackPush(mob.gameObject);
 		}
-	}
+        
+    }
 	
 	void OnTriggerExit(Collider mob)
 	{
@@ -119,8 +128,8 @@ public class TowerBase : MonoBehaviour
 		{
 			CurrentTarget = null;
 		}
-	}
-	
+    }
+    
 	
 	void Fire(GameObject creep, int damage)
 	{
