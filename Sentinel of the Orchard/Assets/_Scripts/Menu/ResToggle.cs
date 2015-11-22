@@ -1,38 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ResToggle : MonoBehaviour
 {
-    bool isPressed = false;
+    bool isPressed = true;
     public GameObject panel;
 
 
 	// Use this for initialization
-	void Start ()
+    void Start ()
     {
-	
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            togglePanel(isPressed, panel);
-        }
+
     }
 
-    void togglePanel(bool isPressed, GameObject panel)
+    public void togglePanel()
     {
-        if(isPressed)
+        panel.SetActive(isPressed);
+        isPressed = !isPressed;
+    }
+    bool checkFS()
+    {
+        if (Screen.fullScreen == true)
         {
-            panel.SetActive(isPressed);
-            isPressed = !isPressed;
+            return true;
         }
         else
         {
-            panel.SetActive(isPressed);
-            isPressed = !isPressed;
+            return false;
         }
+    }
+    public void optionOne()
+    {
+        Screen.SetResolution(1024, 768, checkFS());
+    }
+    public void optionTwo()
+    {
+        Screen.SetResolution(1280, 1024, checkFS());
+    }
+    public void optionThree()
+    {
+        Screen.SetResolution(1366, 768, checkFS());
+    }
+    public void optionFour()
+    {
+        Screen.SetResolution(1920, 1080, checkFS());
     }
 }
