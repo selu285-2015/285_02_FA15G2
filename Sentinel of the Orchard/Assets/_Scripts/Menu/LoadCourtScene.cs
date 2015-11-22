@@ -13,6 +13,8 @@ public class LoadCourtScene : MonoBehaviour {
 
 			if (PickBerries.gameObject.tag == "Player") {
 				if (Input.GetKeyDown (KeyCode.Z)) {
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
 				Application.LoadLevel (4);
 				}
 			}
