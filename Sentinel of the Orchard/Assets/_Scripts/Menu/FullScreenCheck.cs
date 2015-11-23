@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class FullScreenCheck : MonoBehaviour {
 
-    Text instruction;
+    protected Text instruction;
     bool isFS = false;
-    Resolution currentRes;
+    protected Resolution currentRes;
 
 	// Use this for initialization
 	void Start ()
