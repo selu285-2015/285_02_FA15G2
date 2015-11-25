@@ -7,7 +7,15 @@ public class LoadCourtScene : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
+	void Update () {
+		if (Input.GetKeyDown (KeyCode.P)) {
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+			Application.LoadLevel (6);
+
+		}
+	}
 
 	void OnTriggerStay (Collider PickBerries) {
 
