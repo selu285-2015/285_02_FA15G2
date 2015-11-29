@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour {
 
@@ -9,6 +10,12 @@ public class PlayerInventory : MonoBehaviour {
 	public int amountOf3rdTower = 0;
 	public GameObject shopCanvas;
 	public Collider shopCollider;
+	public Text teslaAmount;
+	public Text tikiAmount;
+	public Text ShottyAmount;
+
+	public GameObject gun;
+	public GameObject wrench;
 
     // Use this for initialization
     void Start () {
@@ -17,7 +24,10 @@ public class PlayerInventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		teslaAmount.text = amountOfTesla.ToString();
+		tikiAmount.text = amountOfTiki.ToString();
+		ShottyAmount.text = amountOf3rdTower.ToString ();
+		swapSystem ();
 	}
 
 	void OnTriggerEnter(Collider check){
@@ -32,4 +42,19 @@ public class PlayerInventory : MonoBehaviour {
 			shopCanvas.SetActive(false);
 		}
     }
+
+	void swapSystem(){
+		if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			// enable gun
+			//dis wrench
+			gun.SetActive(true);
+			wrench.SetActive(false);
+		}
+		else if(Input.GetKeyDown(KeyCode.Alpha5)){
+			//enable wrnech
+			//dis gun
+			gun.SetActive(false);
+			wrench.SetActive(true);
+		}
+	}
 }

@@ -53,8 +53,18 @@ public class ShopScript : MonoBehaviour {
 	}
 	public void buyTiki(){
 		if (inven.money >= 100) {
-			inven.money = inven.money - 100;
+			mSystem.LoseMoney(100);
 			inven.amountOfTiki++;
+			//play young mulla baybe
+		} else {
+			//play err err sound
+		}
+	}
+
+	public void buyShotGun(){
+		if (inven.money >= 100) {
+			mSystem.LoseMoney(100);
+			inven.amountOf3rdTower++;
 			//play young mulla baybe
 		} else {
 			//play err err sound
