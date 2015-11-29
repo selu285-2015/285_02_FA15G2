@@ -62,6 +62,7 @@ public class Waves : MonoBehaviour {
 			
 		else if(charArray [index] == '\n'){
 			spawning = false;
+				index++;
 		}
 			}
 	else if(Input.GetKeyDown(KeyCode.M)){
