@@ -17,7 +17,7 @@ public class TowerBase : MonoBehaviour
     [SerializeField]
     private GameObject upgrade;
 
-    private GameObject CurrentTarget = null;
+    public GameObject CurrentTarget = null;
 	private float timer = 5f;
 	private GameObject[] targetStack = new GameObject[100];
 	private int stackCount = 0;

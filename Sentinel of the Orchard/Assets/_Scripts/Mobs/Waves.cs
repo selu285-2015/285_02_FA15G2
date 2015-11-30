@@ -4,10 +4,12 @@ using System.Collections;
 public class Waves : MonoBehaviour {
 
 
-	[SerializeField]private Transform prefab;
-	[SerializeField]private Transform prefab2;
-	[SerializeField]private Transform prefab3;
-	[SerializeField]private PauseMenu pauseMenu;
+	[SerializeField]private Transform apple;
+	[SerializeField]private Transform lemon;
+	[SerializeField]private Transform boss;
+	[SerializeField]private Transform lime;
+	//[SerializeField]private Transform orange;
+	//[SerializeField]private PauseMenu pauseMenu;
 	[SerializeField]private TextAsset strings;
 	private float timer = 0f;
 	public float waveDelay = 1f;
@@ -43,6 +45,10 @@ public class Waves : MonoBehaviour {
 						SpawnBoss ();
 						index++;
 						break;
+					case 'g':
+						SpawnLime();
+						index++;
+						break;
 					default:
 						index++;
 						break;
@@ -52,6 +58,7 @@ public class Waves : MonoBehaviour {
 			
 		else if(charArray [index] == '\n'){
 			spawning = false;
+				index++;
 		}
 			}
 	else if(Input.GetKeyDown(KeyCode.M)){
@@ -60,14 +67,18 @@ public class Waves : MonoBehaviour {
 	}
 	
 	void SpawnApple() {
-			Object.Instantiate (prefab);
+			Object.Instantiate (apple);
 		}
 
 	void SpawnLemon() {
-		Object.Instantiate (prefab2);
+		Object.Instantiate (lemon);
 	}
 
 	void SpawnBoss() {
-		Object.Instantiate (prefab3);
+		Object.Instantiate (boss);
+	}
+
+	void SpawnLime(){
+		Object.Instantiate (lime);
 	}
 }
