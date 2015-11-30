@@ -13,6 +13,7 @@ public class PlayerInventory : MonoBehaviour {
 	public Text teslaAmount;
 	public Text tikiAmount;
 	public Text ShottyAmount;
+	public int points = 0;
 
 	public GameObject gun;
 	public GameObject wrench;
