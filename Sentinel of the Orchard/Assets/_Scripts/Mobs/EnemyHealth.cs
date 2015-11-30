@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour {
 	public float sink = 2.5f;
 	public int value = 100;
 	public Navigation navigation;
+	private int points = 100;
 	//public AudioClip sound; For futre sound clips
 
 	//Animator anim;
@@ -17,11 +18,13 @@ public class EnemyHealth : MonoBehaviour {
 	bool isSink;
 	private GameObject player;
 	private MoneySystem mSystem;
+	PlayerInventory p;
     // Use this for initialization
     void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		mSystem = player.GetComponent<MoneySystem> ();
 		collider = GetComponent<Collider> ();
+		 p = player.GetComponent<PlayerInventory> ();
 
 		currentHP = startingHP;
 	}
@@ -70,7 +73,7 @@ public class EnemyHealth : MonoBehaviour {
 
         //increase player's money.
         mSystem.GainMoney(100);
-
+		p.points = p.points + 100;
 		Destroy (gameObject, 2f);
 	}
 

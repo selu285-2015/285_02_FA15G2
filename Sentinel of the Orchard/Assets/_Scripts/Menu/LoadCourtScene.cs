@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class LoadCourtScene : MonoBehaviour {
-
+	public GameObject player;
+	public PlayerInventory p;
+	public HighScores h;
 	// Use this for initialization
 	void Start () {
-	
+		p = player.GetComponent<PlayerInventory> ();
+		h = player.GetComponent<HighScores> ();
 	}
 
 	void Update () {
@@ -13,7 +16,7 @@ public class LoadCourtScene : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 			Application.LoadLevel (6);
-
+			h.add(p.points);
 		}
 	}
 
