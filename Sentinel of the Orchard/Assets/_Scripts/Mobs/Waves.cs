@@ -8,8 +8,8 @@ public class Waves : MonoBehaviour {
 	[SerializeField]private Transform lemon;
 	[SerializeField]private Transform boss;
 	[SerializeField]private Transform lime;
-	[SerializeField]private Transform orange;
-	[SerializeField]private PauseMenu pauseMenu;
+	//[SerializeField]private Transform orange;
+	//[SerializeField]private PauseMenu pauseMenu;
 	[SerializeField]private TextAsset strings;
 	private float timer = 0f;
 	public float waveDelay = 1f;
@@ -49,10 +49,6 @@ public class Waves : MonoBehaviour {
 						SpawnLime();
 						index++;
 						break;
-					case'o':
-						SpawnOrange();
-						index++;
-						break;
 					default:
 						index++;
 						break;
@@ -84,9 +80,5 @@ public class Waves : MonoBehaviour {
 
 	void SpawnLime(){
 		Object.Instantiate (lime);
-	}
-
-	void SpawnOrange(){
-		Object.Instantiate (orange);
 	}
 }

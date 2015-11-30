@@ -4,12 +4,15 @@ using System.Collections;
 public class TowerPlacement : MonoBehaviour
 {
 
-    private MeshRenderer self;
+    public MeshRenderer self;
     public GameObject prefab;
-    public bool placeable = false;
+    public GameObject teslaGuide;
+    public GameObject tikiGuide;
+    public GameObject shotgunGuide;
+    public bool placeable = true;
     public float height;
     public float displayheight;
-    private Renderer selfRenderer;
+    public Renderer selfRenderer;
     public string Key;
 	private GameObject player;
 	private PlayerInventory inven;
@@ -30,7 +33,7 @@ public class TowerPlacement : MonoBehaviour
         self.gameObject.transform.position = new Vector3(self.gameObject.transform.position.x, displayheight, self.gameObject.transform.position.z);
         self.gameObject.transform.rotation = Quaternion.Euler(270, 0, 0);
 
-        if (self.transform.position.y > 6 && placeable)
+        if (placeable)
 	    {
             //self.material.color = Color.blue;
             foreach (Material mat in selfRenderer.materials)
@@ -46,31 +49,54 @@ public class TowerPlacement : MonoBehaviour
                 mat.color = new Color(1, 0, 0, .4f);
             }
         }
-	    if (Input.GetKeyDown(Key) && inven.amountOfTesla > 0)
+	    if (Input.GetKeyDown(Key) && inven.amountOfTesla > 0 && Key == "1")
 	    {
 	        self.enabled = !self.enabled;
-	    }
-	    if (self.enabled && Input.GetKey("e") && self.transform.position.y > 6 && placeable)
+            tikiGuide.GetComponent<MeshRenderer>().enabled = false;
+            shotgunGuide.GetComponent<MeshRenderer>().enabled = false;
+        }
+		if (Input.GetKeyDown(Key) && inven.amountOfTiki > 0 && Key == "2")
+		{
+			self.enabled = !self.enabled;
+            teslaGuide.GetComponent<MeshRenderer>().enabled = false;
+            shotgunGuide.GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (Input.GetKeyDown(Key) && inven.amountOf3rdTower > 0 && Key == "3")
+        {
+            self.enabled = !self.enabled;
+            teslaGuide.GetComponent<MeshRenderer>().enabled = false;
+            tikiGuide.GetComponent<MeshRenderer>().enabled = false;
+        }
+        if (self.enabled && Input.GetKey("e") && placeable)
 	    {
 	        GameObject newTower = Object.Instantiate(prefab);
 	        newTower.transform.position = self.gameObject.transform.position;
 	        self.enabled = false;
-			inven.amountOfTesla--;
-	    }
+			if(Key == "1")
+				inven.amountOfTesla--;
+            else if (Key == "2")
+                inven.amountOfTiki--;
+            else if (Key == "3")
+                inven.amountOf3rdTower--;
+        }
     }
-
 
     void OnTriggerStay(Collider other)
     {
         if (other.isTrigger) return;
-        if (other.CompareTag("Map") == false) placeable = false;
-        else if(other.CompareTag("Map")) placeable = true;
+        else if (other.CompareTag("Map")) placeable = true;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.isTrigger) return;
+        else if (other.CompareTag("Wall")) placeable = false;
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.isTrigger) return;
-        if (other.CompareTag("Map") == true) placeable = false;
+        if (other.CompareTag("Map")) placeable = false;
+        else if (other.CompareTag("Wall") == true) placeable = true;
     }
     
 }
